@@ -334,7 +334,6 @@ Server.prototype.listenSocket = function(socket, onlistening) {
 	var self = this;
 
 	socket.on('message', function(message, rinfo) {
-		self.emit('message', message, rinfo)
 		if (message.length < MIN_PACKET_SIZE) {
 			self.emit('message', message, rinfo)
 			return
