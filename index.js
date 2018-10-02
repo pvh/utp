@@ -206,6 +206,11 @@ Connection.prototype._resend = function() {
 	var first = this._outgoing.get(offset);
 	if (!first) return;
 
+	// HACK: this might fix resend bug
+	this._outgoing.del(offset);
+	this._inflightPackets--;
+	// END HACK
+
 	var timeout = 500000;
 	var now = timestamp();
 
@@ -452,6 +457,4 @@ Server.prototype.connect = function(port, host) {
 	return connection;
 };
 
-
-
-module.exports = Utp 
+module.exports = Utp
